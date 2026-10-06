@@ -1,0 +1,50 @@
+30 ?- house = house.
+true.
+
+%because the atoms here are identical 
+
+31 ?- house = abc.
+false.
+
+%the atoms here are not identical
+
+32 ?- edge(a,b) = edge(C,b).
+C = a.
+%here the predicate have the same name so we can use = and the variable C = a a is the value of C 
+
+33 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+
+/*here the predicate have the same name so we can use = , and as we can see the order is a ,b for the first and C ,B  for the other so C=a (first variable = first value ) B=d ( second variable = second value)*/
+
+34 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+
+/* exact same as 33 the order of the predicate around the "=" doesn't matter thus  order is a ,b for the first and C ,B  for the other so C=a (first variable = first value ) B=d ( second variable = second value) because variable always in the left hand side and values in the right  */
+
+35 ?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+/* similar logic here the predicate have the same name so we can use = , and as we can see the order is A ,f(g,h) for the first and a , B for the other so A=a (first variable = first value ) B= f(g, h) ( second variable = second compound term)*/
+
+
+36 ?- edge(A,A) = edge(b,c).
+false.
+/*if we followed the logic above A=b ,A=c (this is what should this mean) and the variable cannot have 2 different values thus prolog gives false */
+
+37 ?- edge(A,A) = edge(b,b).
+A = b.
+/*if we followed the logic above A=b ,A=b (this is what should this mean ) and the variable can  have 1 value so A is indeed b A=b */
+
+
+
+
+38 ?- A = B, B = f.
+A = B, B = f.
+/* logically A=f but prolog just show an emphasis that A=B ,B=f (here the variable A equal to  the variable B)*/
+
+39 ?- A = B, B = f, A = e.
+false.
+/* since A=B , B=f this means A=f  then A=e  lets A have tow different values (also B=e that not true) which is wrong that why prolog shows false variables has to have one value only */
